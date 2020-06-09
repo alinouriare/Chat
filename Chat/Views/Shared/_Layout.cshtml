@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CahtApp</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="navbar">
+        <p style="color:burlywood">@User.Identity.Name</p>
+        <a asp-controller="Home" asp-action="Index">Home</a>
+        <a asp-controller="Home" asp-action="Find">Find</a>
+        <a asp-controller="Home" asp-action="Private">Private</a>
+    </div>
+    <div class="main">
+        @if (User.Identity.IsAuthenticated)
+        {
+            @await Component.InvokeAsync("Room")
+        }
+
+        <div class="chat">
+            @RenderBody()
+        </div>
+        <div class="model" id="create-room-model">
+
+            <form class="model-body" asp-controller="Home" asp-action="CreateRoom">
+                <button type="button" class="close" onclick="closeModel()">x</button>
+                <header>CreateRoom</header>
+                <div><input name="name" /></div>
+                <footer><button>Create</button></footer>
+            </form>
+
+        </div>
+    </div>
+    <script src="~/js/siteModal.js"></script>
+   
+
+    
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

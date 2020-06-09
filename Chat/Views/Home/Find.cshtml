@@ -1,0 +1,9 @@
+﻿@model IEnumerable<User>
+
+@foreach (var item in Model)
+{
+    <a asp-controller="Home" asp-action="CreateRoomPrivate" asp-route-userId="@item.Id">
+        @item.UserName
+    </a>
+}
+
